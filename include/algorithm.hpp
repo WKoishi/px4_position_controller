@@ -6,10 +6,11 @@
 #include "geometry_msgs/Vector3.h"
 #include "math.h"
 
+#define PPC_PI 3.14159265
+
 class Algorithm
 {
     public:
-        static const double PI = 3.14159265;
 
         template <typename T> static int sign(T val)
         {
@@ -28,7 +29,7 @@ class Algorithm
             {
                 int sign_pitch = sign<double>(pitch);
                 euler.z = -2 * sign_pitch * (double)atan2(q.x, q.w); // yaw
-                euler.y = sign_pitch * (PI / 2.0); // pitch
+                euler.y = sign_pitch * (PPC_PI / 2.0); // pitch
                 euler.x = 0; // roll
             }
             else
