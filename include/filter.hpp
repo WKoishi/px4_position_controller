@@ -1,3 +1,6 @@
+#ifndef PPC_FILTER_H
+#define PPC_FILTER_H
+
 class FirstOrderFilter
 {
     public:
@@ -14,3 +17,5 @@ class FirstOrderFilter
         double integral_val;
         double filter_alpha;
 };
+
+#endif

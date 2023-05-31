@@ -1,3 +1,6 @@
+#ifndef PPC_PID_CONTROLLER_H
+#define PPC_PID_CONTROLLER_H
+
 #include "filter.hpp"
 
 class PID_Controller
@@ -14,10 +17,12 @@ class PID_Controller
             double output = 0;
 
             // ANTI-Windup
-            if (integral_val < output_min && input_bias > 0)
-                integral_val += input_bias;
-            else if (integral_val > output_max && input_bias < 0)
-                integral_val += input_bias;
+            if (integral_val < output_min)
+                if (input_bias > 0)
+                    integral_val += input_bias;
+            else if (integral_val > output_max)
+                if (input_bias < 0)
+                    integral_val += input_bias;
             else
                 integral_val += input_bias;
             
@@ -46,3 +51,5 @@ class PID_Controller
 
         FirstOrderFilter differential_filter;
 };
+
+#endif
